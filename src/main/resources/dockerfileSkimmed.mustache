@@ -1,0 +1,16 @@
+FROM openjdk:8
+LABEL{{#name}} name="{{name}}"{{/name}}{{#description}} description="{{description}}"{{/description}}
+
+ENV DEPLOY_DIR /opt
+ENV INSTALL_DIR ${DEPLOY_DIR}/lib
+
+COPY lib/* ${INSTALL_DIR}/
+
+{{#modules}}
+    COPY modules/{{.}} ${INSTALL_DIR}
+{{/modules}}
+
+COPY {{executableName}} ${DEPLOY_DIR}
+
+ENTRYPOINT java -jar ${DEPLOY_DIR}/{{executableName}}
+EXPOSE {{port}}
