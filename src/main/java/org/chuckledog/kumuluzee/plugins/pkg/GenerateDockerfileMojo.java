@@ -20,9 +20,9 @@ import java.util.*;
 import java.util.logging.Logger;
 
 @Mojo(name = "generate-dockerfile", defaultPhase = LifecyclePhase.PACKAGE /*, defaultPhase = LifecyclePhase.PROCESS_RESOURCES, requiresDependencyCollection = ResolutionScope.COMPILE_PLUS_RUNTIME, requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME*/)
-public class AbstractPackageMojo extends AbstractMojo {
+public class GenerateDockerfileMojo extends AbstractMojo {
 
-    private static final Logger log = Logger.getLogger(AbstractPackageMojo.class.getName());
+    private static final Logger log = Logger.getLogger(GenerateDockerfileMojo.class.getName());
 
     @Parameter(defaultValue = "${project}", required = true, readonly = true)
     private MavenProject project;
@@ -56,14 +56,17 @@ public class AbstractPackageMojo extends AbstractMojo {
         mustacheContext.put("port", readPortFromConfig());
 
         String dockerfileTemplate = DOCKERFILE_UBER_TEMPLATE;
+
+        String executableName = String.format("%s-%s.jar", project.getName(), project.getVersion());
+
         if (packagingType.equals("skimmed")){
             dockerfileTemplate = DOCKERFILE_SKIMMED_TEMPLATE;
-            mustacheContext.put("executableName", "kumuluz-skimmed.jar");
+            executableName = executableName.replace(".jar", "-skimmed.jar");
         }
-        else {
-            String executableName = String.format("%s-%s.jar", project.getName(), project.getVersion());
-            mustacheContext.put("executableName", executableName);
+        else if (packagingType.equals("exploded")){
         }
+
+        mustacheContext.put("executableName", executableName);
 
         // Single-module project
         if (project.getParent() == null && modules.size() == 0) {

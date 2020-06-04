@@ -4,7 +4,7 @@ LABEL{{#name}} name="{{name}}"{{/name}}{{#description}} description="{{descripti
 ENV DEPLOY_DIR /opt
 ENV INSTALL_DIR ${DEPLOY_DIR}/lib
 
-COPY lib/* ${INSTALL_DIR}/
+COPY lib ${INSTALL_DIR}
 
 {{#modules}}
     COPY modules/{{.}} ${INSTALL_DIR}
