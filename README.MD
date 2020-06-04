@@ -32,23 +32,23 @@ __Dockerfile and Docker images__:
 __Plugin example__:
 ```xml
 <build>
-	 <plugins>
-		 <plugin>
-			 <groupId>com.kumuluz.ee</groupId>
-			 <artifactId>kumuluzee-maven-plugin</artifactId>
-			 <version>${kumuluz.version}</version>
-			 <executions>
-				 <execution>
-					 <id>package</id>
-					 <goals>
-						 <goal>repackage</goal>
-						 <goal>generate-dockerfile</goal>
-					 </goals>
-				</execution>
-			</executions>
-			<configuration>
-				<packagingType>skimmed</packagingType>
-			</configuration>
-		</plugin>
-	</plugins>
+   <plugins>
+      <plugin>
+         <groupId>com.kumuluz.ee</groupId>
+         <artifactId>kumuluzee-maven-plugin</artifactId>
+         <version>${kumuluz.version}</version>
+         <executions>
+            <execution>
+	       <id>package</id>
+	       <goals>
+	          <goal>repackage</goal>
+	          <goal>generate-dockerfile</goal>
+	       </goals>
+            </execution>
+         </executions>
+         <configuration>
+            <packagingType>skimmed</packagingType>
+         </configuration>
+      </plugin>
+   </plugins>
 </build>
