@@ -2,13 +2,18 @@
 __Goals__:
 * __repackage__:
 	* Added new config option: "_packagingType_"
-	* Accepted values for _packageType_ are "uber" (default) and "skimmed"
+	* Accepted values for _packageType_ are "uber" (default), "exploded", and "skimmed"
 * __generate-dockerfile__:
 	* New option
 	* Uses the same "_packagingType_" config option as __repackage__
 	* Generates a buildable Dockerfile and (if needed) .dockerignore for the project
 	* Once the project is packaged with the matching _packagingType_, the Docker image can be built
 
+* __generate-project__:
+	* New option
+	* Prompts the user for basic information (groupId, artifactId, projectVersion, and kumuluzEeVersion)
+	* Generates a functional Hello-World microservice with all the necessary dependencies and with or without a basic 3-module (api-services-entities) structure
+	
 __SkimmedJAR__:
 
 * Separated dependency runtime and application classes
