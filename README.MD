@@ -11,7 +11,7 @@ __Goals__:
 
 * __generate-project__:
 	* New option
-	* Prompts the user for basic information (groupId, artifactId, projectVersion, and kumuluzEeVersion)
+	* Prompts the user for basic information (groupId, artifactId, projectVersion, and kumuluzEeVersion) or reads values from an existing POM if one is present
 	* Generates a functional Hello-World microservice with all the necessary dependencies and with or without a basic 3-module (api-services-entities) structure
 	
 __SkimmedJAR__:
@@ -35,6 +35,12 @@ __Dockerfile and Docker images__:
 		* With multi-module projects, the modules are treated as dependencies in _lib/_, but are copied separately in their own layers on top of the dependency layer (again allows for reuse of the dependency layer)
 
 __Plugin example__:
+
+__Generating a demo project:__
+
+mvn com.kumuluz.ee:kumuluzee-maven-plugin:3.10.0-SNAPSHOT:generate-project
+
+__Dockerfile generation with SkimmedJAR packaging:__
 ```xml
 <build>
    <plugins>
